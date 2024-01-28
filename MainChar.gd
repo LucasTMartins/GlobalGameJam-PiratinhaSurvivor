@@ -32,19 +32,29 @@ func _process(_delta):
 	if is_andando:
 		animar_passos()
 	
+	var animacao = $AtaqueCorporal/ColisaoAtaqueC/AnimatedSprite2D
+	var colisao = $AtaqueCorporal/ColisaoAtaqueC
 	if is_atacando:
-		$AtaqueCorporal/ColisaoAtaqueC.disabled = false
+		
+		colisao.disabled = false
 		
 		if direcao_olhando.y > 0.2: #frente
-			$AtaqueCorporal/ColisaoAtaqueC.position = Vector2(0, 100)
+			colisao.position = Vector2(0, 100)
+			animacao.play("Ataque_frente")
 		if direcao_olhando.y < -0.2:
-			$AtaqueCorporal/ColisaoAtaqueC.position = Vector2(0, -100)
+			colisao.position = Vector2(0, -100)
+			animacao.play("Ataque_atras")
 		if direcao_olhando.x > 0 and direcao_olhando.y < 0.2 and direcao_olhando.y > -0.2:
-			$AtaqueCorporal/ColisaoAtaqueC.position = Vector2(100, 0)
+			colisao.position = Vector2(100, 0)
+			animacao.flip_h = false
+			animacao.play("Ataque_lado")
 		if direcao_olhando.x < 0 and direcao_olhando.y < 0.2 and direcao_olhando.y > -0.2:
-			$AtaqueCorporal/ColisaoAtaqueC.position = Vector2(-100, 0)
+			colisao.position = Vector2(-100, 0)
+			animacao.flip_h = true
+			animacao.play("Ataque_lado")
 	else:
-		$AtaqueCorporal/ColisaoAtaqueC.disabled = true
+		colisao.disabled = true
+		animacao.stop()
 
 func _physics_process(_delta):
 	movimentar()
@@ -83,6 +93,8 @@ func movimentar():
 func atacar():
 	$AtackingTimer.start()
 	is_atacando = true
+	animar_ataque()
+	#$AtaqueCorporal/ColisaoAtaqueC/AnimatedSprite2D.visible = false
 
 func _on_dashing_timer_timeout():
 	$DashingTimer.stop()
@@ -146,6 +158,31 @@ func animar_passos():
 		$AnimatedSprite2D.play("Andando_direita", -1)
 	if velocity == Vector2(0, 0) and $AnimatedSprite2D.is_playing():
 		$AnimatedSprite2D.stop()
+		
+func animar_ataque():
+	var animacao = $AtaqueCorporal/ColisaoAtaqueC/AnimatedSprite2D
+	
+	if direcao_olhando.y > 0.2:
+		animacao.visible = true
+		animacao.play("Ataque_frente")
+		#animacao.stop()
+	if direcao_olhando.y < -0.2:
+		animacao.visible = true
+		animacao.play("Ataque_atras", -1)
+		animacao.stop()
+	if direcao_olhando.x > 0 and direcao_olhando.y < 0.2 and direcao_olhando.y > -0.2:
+		animacao.visible = true
+		animacao.flip_h = false
+		animacao.play("Ataque_lado", -1)
+		animacao.stop()
+	if direcao_olhando.x < 0 and direcao_olhando.y < 0.2 and direcao_olhando.y > -0.2:
+		animacao.visible = true
+		animacao.flip_h = true
+		animacao.play("Ataque_lado", -1)
+		animacao.stop()
+	
+func atualiza_vida(dano):
+	vida -= dano
 		
 #func animar_dash():
 	#if direcao_olhando == Vector2 (0, 1):

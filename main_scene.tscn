@@ -1,22 +1,30 @@
-[gd_scene load_steps=27 format=3 uid="uid://4wnwwlk1v34c"]
+[gd_scene load_steps=33 format=3 uid="uid://4wnwwlk1v34c"]
 
-[ext_resource type="Texture2D" uid="uid://l3lstd1xpsjx" path="res://icon.svg" id="1_eu8sh"]
 [ext_resource type="Script" path="res://main_scene.gd" id="1_i4pw4"]
 [ext_resource type="Script" path="res://MainChar.gd" id="1_ol2dr"]
+[ext_resource type="Texture2D" uid="uid://2i1fmu2mm8t1" path="res://Assets/Mapa/mapa.png" id="2_fggv6"]
 [ext_resource type="Texture2D" uid="uid://ddrypul0gvbgd" path="res://Assets/Player/MainChar_f01.png" id="2_wyi0o"]
 [ext_resource type="Texture2D" uid="uid://chim7lr3h3ftp" path="res://Assets/Player/MainChar_f02.png" id="3_2elfs"]
 [ext_resource type="Texture2D" uid="uid://d4mwltcqrf8hp" path="res://Assets/Player/MainChar_t01.png" id="3_7cqnt"]
-[ext_resource type="Script" path="res://Enemy.gd" id="3_lrilf"]
 [ext_resource type="Texture2D" uid="uid://bfijc38idjq3u" path="res://Assets/Player/MainChar_t02.png" id="4_1eank"]
+[ext_resource type="Texture2D" uid="uid://0tcm6t82gupj" path="res://Assets/Efeito/cortecima1.png" id="4_17ffw"]
 [ext_resource type="Texture2D" uid="uid://dssuye3rjlime" path="res://Assets/Player/MainChar_f03.png" id="4_k2x7j"]
+[ext_resource type="Texture2D" uid="uid://b7s60nww4c2sn" path="res://Assets/Efeito/Frame_vazio.png" id="4_o00rx"]
+[ext_resource type="Texture2D" uid="uid://d34sxfmnpn5fn" path="res://Assets/Efeito/cortecima2.png" id="5_km46e"]
 [ext_resource type="Texture2D" uid="uid://diaoqsx6e7xsw" path="res://Assets/Player/MainChar_t03.png" id="5_w3clg"]
 [ext_resource type="Texture2D" uid="uid://cdfi4t06vp435" path="res://Assets/Player/MainChar_l01.png" id="6_61381"]
+[ext_resource type="Texture2D" uid="uid://0lopc43t65hr" path="res://Assets/Efeito/cortecima3.png" id="6_cmnlu"]
 [ext_resource type="Texture2D" uid="uid://w4abwx7d38df" path="res://Assets/Player/MainChar_l02.png" id="7_axxmj"]
+[ext_resource type="Texture2D" uid="uid://rprpynrprrdd" path="res://Assets/Efeito/corte1.png" id="7_yf20f"]
 [ext_resource type="Texture2D" uid="uid://bbee4i1hg1tm4" path="res://Assets/Player/MainChar_l03.png" id="8_f0g64"]
+[ext_resource type="Texture2D" uid="uid://bm8ktjktwqdo2" path="res://Assets/Efeito/corte2.png" id="8_vcpea"]
+[ext_resource type="Texture2D" uid="uid://dk0t1p0a4p3f" path="res://Assets/Efeito/corte3.png" id="9_i4byn"]
+[ext_resource type="Texture2D" uid="uid://uj8snk0y0cd6" path="res://Assets/Efeito/cortedi1.png" id="10_sal8e"]
+[ext_resource type="Texture2D" uid="uid://bjst4fjtslw65" path="res://Assets/Efeito/cortedi2.png" id="11_16554"]
 [ext_resource type="Texture2D" uid="uid://xnjrgbisklmb" path="res://Assets/Player/MainChar_td01.png" id="11_t653n"]
 [ext_resource type="Texture2D" uid="uid://clji304d0icq8" path="res://Assets/Player/MainChar_fd01.png" id="11_tw4pk"]
+[ext_resource type="Texture2D" uid="uid://bwxwakep48b2n" path="res://Assets/Efeito/cortedi3.png" id="12_21j7y"]
 [ext_resource type="Texture2D" uid="uid://cpijwatbjt6da" path="res://Assets/Player/MainChar_ld01.png" id="12_lmpmx"]
-[ext_resource type="Texture2D" uid="uid://bg52xoueqwwtn" path="res://photo_2024-01-28_10-43-41.jpg" id="16_7r1pl"]
 [ext_resource type="AudioStream" uid="uid://c8ei1dlaq22i0" path="res://Assets/Music/MainMusic.mp3" id="18_m522t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kqro"]
@@ -33,10 +41,56 @@ size = Vector2(26.0002, 25.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wvyf"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"ataque",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_o00rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_17ffw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_km46e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cmnlu")
+}],
+"loop": false,
+"name": &"Ataque_atras",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_o00rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yf20f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vcpea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_i4byn")
+}],
+"loop": false,
+"name": &"Ataque_frente",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_o00rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sal8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_16554")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_21j7y")
+}],
+"loop": false,
+"name": &"Ataque_lado",
+"speed": 12.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bskps"]
@@ -108,19 +162,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fso3k"]
-size = Vector2(50, 53)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cwhf5"]
-radius = 425.005
-
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_i4pw4")
 
 [node name="Cenario_teste" type="Sprite2D" parent="."]
-position = Vector2(1975, -80)
-scale = Vector2(4.09323, 4.09323)
-texture = ExtResource("16_7r1pl")
+position = Vector2(0, 430)
+scale = Vector2(0.813946, 0.813946)
+texture = ExtResource("2_fggv6")
 
 [node name="MainChar" type="CharacterBody2D" parent="." groups=["jogador"]]
 position = Vector2(619, 339)
@@ -140,30 +188,33 @@ wait_time = 2.0
 [node name="CooldownAtaque" type="Timer" parent="MainChar"]
 
 [node name="AtackingTimer" type="Timer" parent="MainChar"]
+wait_time = 0.2
 
 [node name="AreaAtaqueDistancia" type="Area2D" parent="MainChar"]
 visible = false
 
 [node name="ColisaoAreaAtaqueD" type="CollisionShape2D" parent="MainChar/AreaAtaqueDistancia"]
+visible = false
 shape = SubResource("CircleShape2D_4xiym")
 
 [node name="AreaAtaqueCoporal" type="Area2D" parent="MainChar"]
 
 [node name="ColisaoAreaAtaqueC" type="CollisionShape2D" parent="MainChar/AreaAtaqueCoporal"]
+visible = false
 shape = SubResource("CircleShape2D_qsfkq")
 
 [node name="AtaqueCorporal" type="Area2D" parent="MainChar"]
 
 [node name="ColisaoAtaqueC" type="CollisionShape2D" parent="MainChar/AtaqueCorporal"]
 position = Vector2(0, 100)
-rotation = 1.57079
 scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_3ong0")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainChar/AtaqueCorporal/ColisaoAtaqueC"]
+scale = Vector2(0.256846, 0.256846)
 sprite_frames = SubResource("SpriteFrames_6wvyf")
-animation = &"ataque"
+animation = &"Ataque_frente"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MainChar"]
 remote_path = NodePath("../../Camera")
@@ -184,41 +235,17 @@ max_value = 5.0
 step = 1.0
 value = 5.0
 
-[node name="Enemy" type="RigidBody2D" parent="." groups=["inimigos"]]
-position = Vector2(110, 338)
-script = ExtResource("3_lrilf")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-visible = false
-shape = SubResource("RectangleShape2D_fso3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-scale = Vector2(0.390625, 0.414062)
-texture = ExtResource("1_eu8sh")
-
-[node name="Area2D" type="Area2D" parent="Enemy"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
-visible = false
-shape = SubResource("CircleShape2D_cwhf5")
-
-[node name="TempoAcao" type="Timer" parent="Enemy"]
-wait_time = 0.15
-
-[node name="TempoBusca" type="Timer" parent="Enemy"]
-wait_time = 2.0
-
-[node name="TempoStandBy" type="Timer" parent="Enemy"]
-
-[node name="TempoAndando" type="Timer" parent="Enemy"]
-wait_time = 0.8
-
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(619, 339)
 
 [node name="MusicaPrincipal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_m522t")
+
+[node name="CooldownMusic" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TimerSpawn" type="Timer" parent="."]
+wait_time = 10.0
 
 [connection signal="timeout" from="MainChar/DashingTimer" to="MainChar" method="_on_dashing_timer_timeout"]
 [connection signal="timeout" from="MainChar/ChargingDashTimer" to="MainChar" method="_on_charging_dash_timer_timeout"]
@@ -229,9 +256,5 @@ stream = ExtResource("18_m522t")
 [connection signal="body_entered" from="MainChar/AreaAtaqueCoporal" to="MainChar" method="_on_area_ataque_coporal_body_entered"]
 [connection signal="body_exited" from="MainChar/AreaAtaqueCoporal" to="MainChar" method="_on_area_ataque_coporal_body_exited"]
 [connection signal="body_entered" from="MainChar/AtaqueCorporal" to="MainChar" method="_on_ataque_corporal_body_entered"]
-[connection signal="body_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="Enemy/TempoAcao" to="Enemy" method="_on_tempo_acao_timeout"]
-[connection signal="timeout" from="Enemy/TempoBusca" to="Enemy" method="_on_tempo_busca_timeout"]
-[connection signal="timeout" from="Enemy/TempoStandBy" to="Enemy" method="_on_tempo_stand_by_timeout"]
-[connection signal="timeout" from="Enemy/TempoAndando" to="Enemy" method="_on_tempo_andando_timeout"]
+[connection signal="timeout" from="CooldownMusic" to="." method="_on_cooldown_music_timeout"]
+[connection signal="timeout" from="TimerSpawn" to="." method="_on_timer_spawn_timeout"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://cxc2j5qgootk6"]
+
+[ext_resource type="Script" path="res://Javali.gd" id="1_doaev"]
+[ext_resource type="Texture2D" uid="uid://bgu77ppy5c4ga" path="res://Assets/Inimigos/Javali_t1.png" id="2_mknd7"]
+[ext_resource type="Texture2D" uid="uid://73wa33ry2ah8" path="res://Assets/Inimigos/Javali_t02.png" id="3_i0bo3"]
+[ext_resource type="Texture2D" uid="uid://ba5dj272idfy2" path="res://Assets/Inimigos/Javali_f01.png" id="4_w28dm"]
+[ext_resource type="Texture2D" uid="uid://wydhqrrd75k1" path="res://Assets/Inimigos/Javali_f02.png" id="5_5h4ea"]
+[ext_resource type="Texture2D" uid="uid://bbg3uxpb6bvf4" path="res://Assets/Inimigos/Javali_l1.png" id="6_4xpqu"]
+[ext_resource type="Texture2D" uid="uid://cj67a2w4q26ps" path="res://Assets/Inimigos/Javali_l2.png" id="7_jwwpe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h4oun"]
+radius = 90.1998
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvydp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mknd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i0bo3")
+}],
+"loop": true,
+"name": &"Andando_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_w28dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5h4ea")
+}],
+"loop": true,
+"name": &"Andando_frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4xpqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jwwpe")
+}],
+"loop": true,
+"name": &"Andando_lado",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_105qr"]
+radius = 431.511
+
+[node name="javali" type="RigidBody2D"]
+script = ExtResource("1_doaev")
+
+[node name="AreaDano" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_h4oun")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qvydp")
+animation = &"Andando_lado"
+
+[node name="AreaBatalha" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaBatalha"]
+visible = false
+shape = SubResource("CircleShape2D_105qr")
+
+[node name="TempoAcao" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="TempoBusca" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TempoIdle" type="Timer" parent="."]
+
+[node name="TempoAndando" type="Timer" parent="."]
+wait_time = 0.8
+
+[connection signal="body_entered" from="AreaBatalha" to="." method="_on_area_batalha_body_entered"]
+[connection signal="body_exited" from="AreaBatalha" to="." method="_on_area_batalha_body_exited"]
+[connection signal="timeout" from="TempoAcao" to="." method="_on_tempo_acao_timeout"]
+[connection signal="timeout" from="TempoBusca" to="." method="_on_tempo_busca_timeout"]
+[connection signal="timeout" from="TempoIdle" to="." method="_on_tempo_idle_timeout"]
+[connection signal="timeout" from="TempoAndando" to="." method="_on_tempo_andando_timeout"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvgcg63ucf7rk"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_810v8"]
+[ext_resource type="Texture2D" uid="uid://6jqh48ltpogj" path="res://Assets/Inimigos/Lobito_t1.png" id="2_klhii"]
+[ext_resource type="Texture2D" uid="uid://byvqki7dtckiy" path="res://Assets/Inimigos/Lobito_t2.png" id="3_cm7it"]
+[ext_resource type="Texture2D" uid="uid://bumsxd3mnubng" path="res://Assets/Inimigos/Lobito_f1.png" id="4_hh0bx"]
+[ext_resource type="Texture2D" uid="uid://nqifr1iseiph" path="res://Assets/Inimigos/Lobito_f2.png" id="5_k16ku"]
+[ext_resource type="Texture2D" uid="uid://bf143p3a5m3jt" path="res://Assets/Inimigos/Lobito_l1.png" id="6_w3dlx"]
+[ext_resource type="Texture2D" uid="uid://bvxbt4pjqv3xd" path="res://Assets/Inimigos/Lobito_l2.png" id="7_r4s6g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vghes"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_klhii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cm7it")
+}],
+"loop": true,
+"name": &"Andando_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hh0bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k16ku")
+}],
+"loop": true,
+"name": &"Andando_frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_w3dlx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r4s6g")
+}],
+"loop": true,
+"name": &"Andando_lado",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdwxd"]
+radius = 82.0244
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8efi1"]
+radius = 425.005
+
+[node name="lobo" type="RigidBody2D"]
+script = ExtResource("1_810v8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vghes")
+animation = &"Andando_lado"
+
+[node name="AreaDano" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_gdwxd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_8efi1")
+
+[node name="TempoAcao" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="TempoBusca" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TempoStandBy" type="Timer" parent="."]
+
+[node name="TempoAndando" type="Timer" parent="."]
+wait_time = 0.8
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TempoAcao" to="." method="_on_tempo_acao_timeout"]
+[connection signal="timeout" from="TempoBusca" to="." method="_on_tempo_busca_timeout"]
+[connection signal="timeout" from="TempoStandBy" to="." method="_on_tempo_stand_by_timeout"]
+[connection signal="timeout" from="TempoAndando" to="." method="_on_tempo_andando_timeout"]
